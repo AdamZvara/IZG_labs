@@ -1,0 +1,42 @@
+
+#ifndef BASICCAMERA_EXPORT_H
+#define BASICCAMERA_EXPORT_H
+
+#ifdef BASICCAMERA_STATIC_DEFINE
+#  define BASICCAMERA_EXPORT
+#  define BASICCAMERA_NO_EXPORT
+#else
+#  ifndef BASICCAMERA_EXPORT
+#    ifdef BasicCamera_EXPORTS
+        /* We are building this library */
+#      define BASICCAMERA_EXPORT 
+#    else
+        /* We are using this library */
+#      define BASICCAMERA_EXPORT 
+#    endif
+#  endif
+
+#  ifndef BASICCAMERA_NO_EXPORT
+#    define BASICCAMERA_NO_EXPORT 
+#  endif
+#endif
+
+#ifndef BASICCAMERA_DEPRECATED
+#  define BASICCAMERA_DEPRECATED __attribute__ ((__deprecated__))
+#endif
+
+#ifndef BASICCAMERA_DEPRECATED_EXPORT
+#  define BASICCAMERA_DEPRECATED_EXPORT BASICCAMERA_EXPORT BASICCAMERA_DEPRECATED
+#endif
+
+#ifndef BASICCAMERA_DEPRECATED_NO_EXPORT
+#  define BASICCAMERA_DEPRECATED_NO_EXPORT BASICCAMERA_NO_EXPORT BASICCAMERA_DEPRECATED
+#endif
+
+#if 0 /* DEFINE_NO_DEPRECATED */
+#  ifndef BASICCAMERA_NO_DEPRECATED
+#    define BASICCAMERA_NO_DEPRECATED
+#  endif
+#endif
+
+#endif /* BASICCAMERA_EXPORT_H */

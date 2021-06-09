@@ -1,0 +1,78 @@
+\hypertarget{index_zadani}{}\doxysection{Zadání cvičení 06 do předmětu I\+Z\+G.}\label{index_zadani}
+
+
+Vašim úkolem je naprogramovovat vykreslování domu. Budete programovat pouze v jazyce G\+L\+SL. Cílem cvičení je seznámit se s jazykem G\+L\+SL v Open\+GL / Vulkan. \hypertarget{index_co}{}\doxysection{Které soubory editujete\+:}\label{index_co}
+shaders/student.\+glsl \hypertarget{index_od}{}\doxysection{Co odevzdáváte do W\+I\+S\+:}\label{index_od}
+shaders/student.\+glsl -\/ nesmí být zabalený, pouze tento soubor. \hypertarget{index_jak}{}\doxysection{Jak na to\+:}\label{index_jak}
+Archiv obsahuje zkopilované binárky pro Linux a pro Windows (izg\+\_\+lab06\+\_\+linux.\+bin, izg\+\_\+lab06\+\_\+windows.\+exe).~\newline
+ Pokud vám fungují, není potřeba nic kompilovat!~\newline
+ Pokud je nemůžete použít, je potřeba cvičení zkompilovat, viz \mbox{\hyperlink{index_comp}{Kompilace\+:}}.~\newline
+ Aplikace vykresluje trojúhelníky (volá se příkaz gl\+Draw\+Arrays).~\newline
+ A vyvolává se vertex a fragment shader v souboru shaders/student.\+glsl ~\newline
+ Soubor student.\+glsl obsahuje pomocí preprocesoru vytyčené sekce vertex a fragment shaderu.~\newline
+ Vaším úkolem je \char`\"{}vygenerovat\char`\"{} dům na obráku.~\newline
+ Máte k dispozici pouze číslo vrcholu\+: \char`\"{}gl\+\_\+\+Vertex\+I\+D\char`\"{}.~\newline
+ Na základě tohoto čísla vytvořte/vypočítejte vrcholy a barvy trojúhelníků tak, aby se vykreslil dům na obrázku.~\newline
+ Inspirujte se přiloženými shadery, které vykreslují různé příklady (složka shaders/).~\newline
+ Popis domu je na obrázku\+:  Informace k jazyce G\+L\+SL najdete ve specifikaci\+: \href{https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.60.pdf}{\texttt{ G\+L\+SL}}~\newline
+ Příklady kódů najdete ve složce shaders/.~\newline
+ Když uděláte chybu, vyskočí message box s chybou.~\newline
+ Pamatujte, vertex shader se pouští pro každý vrchol trojúhelníků, jeho cílem je rozmístit vrcholy.~\newline
+ Fragment shader se pouští nad každým fragmentem. Měl by počítat barvu.~\newline
+ Aplikace se pokouší vykreslit velké množství trojúhelníků, vám stačí pouze pár, zbylé můžete \char`\"{}zdegenerovat\char`\"{} do nuly (gl\+\_\+\+Position=vec4(0)).~\newline
+\hypertarget{index_spousteni}{}\doxysection{Spouštění}\label{index_spousteni}
+Aplikace akceptuje několik argumentů příkazové řádky, pro jejich výpis použijte parametr {\bfseries{ -\/h }}
+\begin{DoxyItemize}
+\item {\bfseries{-\/-\/tests}} spustí testy
+\item {\bfseries{-\/-\/shader shaders/box.\+glsl}} vybere zobrazovací shader
+\item {\bfseries{-\/-\/triangles 30}} počet trojúhelníků, který se bude kreslit
+\item {\bfseries{-\/-\/version \char`\"{}300 es\char`\"{}}} verze G\+L\+SL možná budete potřebovat u Intel G\+PU
+\item {\bfseries{a další...}}~\newline
+ Vyzkoušejte si 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/triangle.glsl}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/box.glsl}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/sin.glsl}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/uv.glsl}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/ground.glsl}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/two\_materials.glsl}
+\DoxyCodeLine{./izg\_lab06\_linux.bin -\/-\/shader shaders/korea.glsl}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{index_ovladani}{}\doxysection{Ovládání}\label{index_ovladani}
+Program se ovládá pomocí myši\+:
+\begin{DoxyItemize}
+\item stisknuté levé tlačítko myši + pohyb myší -\/ rotace kamery
+\item stisknuté pravé tlačítko myši + pohyb myší -\/ přiblížení kamery
+\item stiknuté prostření tlačítko myši + pohyb myší -\/ posun kamery do boků
+\end{DoxyItemize}\hypertarget{index_testovani}{}\doxysection{Testování}\label{index_testovani}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./izg\_lab06 -\/-\/tests}
+\end{DoxyCode}
+ Na konci se vám vypíše počet bodů, které dostanete.\hypertarget{index_comp}{}\doxysection{Kompilace\+:}\label{index_comp}
+Toto dělejte pouze tehdy, pokud nemůžete použít přiložené binárky!~\newline
+ Cvičení byl testován na Ubuntu 20.\+04, Visual Studio 2019. Byl testován na N\+V\+I\+D\+IA a A\+MD grafických kartách, Intel. Cvičení využívá build systém \href{https://cmake.org/}{\texttt{ C\+M\+A\+KE}}. C\+Make je program, který na základně konfiguračních souborů \char`\"{}\+C\+Make\+Lists.\+txt\char`\"{} vytvoří \char`\"{}makefile\char`\"{} v daném vývojovém prostředí. Dokáže generovat makefile pro Linux, mingw, solution file pro Microsoft Visual Studio, a další.~\newline
+ Postup Linux\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# stáhnout projekt}
+\DoxyCodeLine{unzip izg\_lab06.zip -\/d izg\_lab06}
+\DoxyCodeLine{cd izg\_lab06/build}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make -\/j8}
+\DoxyCodeLine{./izg\_lab06}
+\DoxyCodeLine{./izg\_lab06 -\/h}
+\DoxyCodeLine{./izg\_lab06 -\/-\/tests}
+\end{DoxyCode}
+ Posup na Windows\+:
+\begin{DoxyEnumerate}
+\item stáhnout cvičení
+\item rozbalit cvičení
+\item jděte do složky build/
+\item ve složce build pusťte cmake-\/gui ..
+\item pokud nevíte jak, tak pusťte cmake-\/gui a nastavte \char`\"{}\+Where is the source code\+:\char`\"{} na složku se cvičením (obsahuje C\+Make\+Lists.\+txt)
+\item a \char`\"{}\+Where to build the binaries\+: \char`\"{} na složku build
+\item configure
+\item generate
+\item Otevřete vygenerovnou Microsoft Visual Studio Solution soubor. 
+\end{DoxyEnumerate}

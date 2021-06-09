@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/izg_lab06.dir/src/main.cpp.o CMakeFiles/izg_lab06.dir/libs/impl.cpp.o -o izg_lab06  libs/SDL2-2.0.14/libSDL2.a libs/SDL2-2.0.14/libSDL2main.a libs/ArgumentViewer/libArgumentViewer.a libs/geGL/libgeGL.a libs/BasicCamera/libBasicCamera.a -lm -ldl -Wl,--no-undefined -pthread libs/TxtUtils/libTxtUtils.a libs/MealyMachine/libMealyMachine.a 

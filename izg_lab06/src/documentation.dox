@@ -1,0 +1,99 @@
+/**
+ * \mainpage Izg lab06.
+ *
+ * \section zadani Zadání cvičení 06 do předmětu IZG.
+ *
+ * \tableofcontents
+ *
+ * \image html src/groundtruth.png "Takto by měl vypadat výstup cvičení"
+ *
+ * Vašim úkolem je naprogramovovat vykreslování domu.
+ * Budete programovat pouze v jazyce GLSL.
+ * Cílem cvičení je seznámit se s jazykem GLSL v OpenGL / Vulkan.
+ * \section co Které soubory editujete:
+ * shaders/student.glsl
+ * \section od Co odevzdáváte do WIS:
+ * shaders/student.glsl - nesmí být zabalený, pouze tento soubor.
+ * \section jak Jak na to:
+ * Archiv obsahuje zkopilované binárky pro Linux a pro Windows (izg_lab06_linux.bin, izg_lab06_windows.exe).<br>
+ * Pokud vám fungují, není potřeba nic kompilovat!<br>
+ * Pokud je nemůžete použít, je potřeba cvičení zkompilovat, viz \ref comp.<br>
+ * Aplikace vykresluje trojúhelníky (volá se příkaz glDrawArrays).<br>
+ * A vyvolává se vertex a fragment shader v souboru shaders/student.glsl <br>
+ * Soubor student.glsl obsahuje pomocí preprocesoru vytyčené sekce vertex a fragment shaderu.<br>
+ * Vaším úkolem je "vygenerovat" dům na obráku.<br>
+ * Máte k dispozici pouze číslo vrcholu: "gl_VertexID".<br>
+ * Na základě tohoto čísla vytvořte/vypočítejte vrcholy a barvy trojúhelníků tak, aby se vykreslil dům na obrázku.<br>
+ * Inspirujte se přiloženými shadery, které vykreslují různé příklady (složka shaders/).<br>
+ * Popis domu je na obrázku:
+ * \image html src/koty.svg "Dům je centrovám na střed souřadnic a je složen z tří částí: země, stěny, střecha. Země je složena ze 2 trojúhelníků, stěny z 8 a střecha ze 4 trojúhelníků. Barvy a rozměry jsou naznačené na obrázku. Zem je pokryta 16 kružnicemi. Stěny domu mají průhlenou část a neprůhlenou část (tenkou 0.1 na každé straně). Střecha míchá červenou a černou barvu." width=1000
+ * Informace k jazyce GLSL najdete ve specifikaci: <a href="https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.60.pdf">GLSL</a><br>
+ * Příklady kódů najdete ve složce shaders/.<br>
+ * Když uděláte chybu, vyskočí message box s chybou.<br>
+ * Pamatujte, vertex shader se pouští pro každý vrchol trojúhelníků, jeho cílem je rozmístit vrcholy.<br>
+ * Fragment shader se pouští nad každým fragmentem. Měl by počítat barvu.<br>
+ * Aplikace se pokouší vykreslit velké množství trojúhelníků, vám stačí pouze pár, zbylé můžete "zdegenerovat" do nuly (gl_Position=vec4(0)).<br>
+
+ * \section spousteni Spouštění
+ *
+ * Aplikace akceptuje několik argumentů příkazové řádky, pro jejich výpis použijte parametr <b> -h </b>
+ * - <b>\-\-tests</b> spustí testy
+ * - <b>\-\-shader shaders/box.glsl</b> vybere zobrazovací shader
+ * - <b>\-\-triangles 30</b> počet trojúhelníků, který se bude kreslit
+ * - <b>\-\-version "300 es"</b> verze GLSL možná budete potřebovat u Intel GPU
+ * - <b>a další...</b><br>
+ * Vyzkoušejte si
+ * \code{.sh}
+ * ./izg_lab06_linux.bin --shader shaders/triangle.glsl
+ * ./izg_lab06_linux.bin --shader shaders/box.glsl
+ * ./izg_lab06_linux.bin --shader shaders/sin.glsl
+ * ./izg_lab06_linux.bin --shader shaders/uv.glsl
+ * ./izg_lab06_linux.bin --shader shaders/ground.glsl
+ * ./izg_lab06_linux.bin --shader shaders/two_materials.glsl
+ * ./izg_lab06_linux.bin --shader shaders/korea.glsl
+ * \endcode
+ *
+ * \section ovladani Ovládání
+ * Program se ovládá pomocí myši:
+ * - stisknuté levé tlačítko myši + pohyb myší - rotace kamery
+ * - stisknuté pravé tlačítko myši + pohyb myší - přiblížení kamery
+ * - stiknuté prostření tlačítko myši + pohyb myší - posun kamery do boků
+ *
+ * \section testovani Testování
+ * \code{.sh}
+ * ./izg_lab06 --tests
+ * \endcode
+ * Na konci se vám vypíše počet bodů, které dostanete.
+ *
+ * \section comp Kompilace:
+ * Toto dělejte pouze tehdy, pokud nemůžete použít přiložené binárky!<br>
+ * Cvičení byl testován na Ubuntu 20.04, Visual Studio 2019.
+ * Byl testován na NVIDIA a AMD grafických kartách, Intel.
+ * Cvičení využívá build systém <a href="https://cmake.org/">CMAKE</a>.
+ * CMake je program, který na základně konfiguračních souborů "CMakeLists.txt"
+ * vytvoří "makefile" v daném vývojovém prostředí.
+ * Dokáže generovat makefile pro Linux, mingw, solution file pro Microsoft
+ * Visual Studio, a další.<br>
+ * Postup Linux:
+ * \code{.sh}
+ * # stáhnout projekt
+ * unzip izg_lab06.zip -d izg_lab06
+ * cd izg_lab06/build
+ * cmake ..
+ * make -j8
+ * ./izg_lab06
+ * ./izg_lab06 -h
+ * ./izg_lab06 --tests
+ * \endcode
+ * Posup na Windows:
+ * -# stáhnout cvičení
+ * -# rozbalit cvičení
+ * -# jděte do složky build/ 
+ * -# ve složce build pusťte cmake-gui ..
+ * -# pokud nevíte jak, tak pusťte cmake-gui a nastavte "Where is the source code:" na složku se cvičením (obsahuje CMakeLists.txt)
+ * -# a "Where to build the binaries: " na složku build
+ * -# configure
+ * -# generate
+ * -# Otevřete vygenerovnou Microsoft Visual Studio Solution soubor.
+ *
+ */

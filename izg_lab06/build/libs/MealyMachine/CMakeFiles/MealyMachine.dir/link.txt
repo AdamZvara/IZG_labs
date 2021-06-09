@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMealyMachine.a CMakeFiles/MealyMachine.dir/src/MealyMachine/MealyMachine.cpp.o
+/usr/bin/ranlib libMealyMachine.a

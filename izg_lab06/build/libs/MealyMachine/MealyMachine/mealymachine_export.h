@@ -1,0 +1,42 @@
+
+#ifndef MEALYMACHINE_EXPORT_H
+#define MEALYMACHINE_EXPORT_H
+
+#ifdef MEALYMACHINE_STATIC_DEFINE
+#  define MEALYMACHINE_EXPORT
+#  define MEALYMACHINE_NO_EXPORT
+#else
+#  ifndef MEALYMACHINE_EXPORT
+#    ifdef MealyMachine_EXPORTS
+        /* We are building this library */
+#      define MEALYMACHINE_EXPORT 
+#    else
+        /* We are using this library */
+#      define MEALYMACHINE_EXPORT 
+#    endif
+#  endif
+
+#  ifndef MEALYMACHINE_NO_EXPORT
+#    define MEALYMACHINE_NO_EXPORT 
+#  endif
+#endif
+
+#ifndef MEALYMACHINE_DEPRECATED
+#  define MEALYMACHINE_DEPRECATED __attribute__ ((__deprecated__))
+#endif
+
+#ifndef MEALYMACHINE_DEPRECATED_EXPORT
+#  define MEALYMACHINE_DEPRECATED_EXPORT MEALYMACHINE_EXPORT MEALYMACHINE_DEPRECATED
+#endif
+
+#ifndef MEALYMACHINE_DEPRECATED_NO_EXPORT
+#  define MEALYMACHINE_DEPRECATED_NO_EXPORT MEALYMACHINE_NO_EXPORT MEALYMACHINE_DEPRECATED
+#endif
+
+#if 0 /* DEFINE_NO_DEPRECATED */
+#  ifndef MEALYMACHINE_NO_DEPRECATED
+#    define MEALYMACHINE_NO_DEPRECATED
+#  endif
+#endif
+
+#endif /* MEALYMACHINE_EXPORT_H */
